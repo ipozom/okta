@@ -1,0 +1,546 @@
+8/10/25, 2:55 PM
+
+Test SAML app implementation with SAML-tracer | Okta Developer
+
+All Developer Edition Orgs will be deactivated starting on July 18, 2025. Sign up for the new
+Integrator Free Plan to continue building and integrating. Learn more on the Okta Developer Blog
+
+Guides
+
+Guides
+
+Concepts
+
+Sign users in
+
+Basics
+
+Journeys
+
+API Docs
+
+References
+
+SDKs
+
+Release No
+
+Set up SAML Tracer
+
+On this page
+
+About SAML-tracer
+
+Test SAML app implementation with
+SAML-tracer
+This guide explains how to test a SAML app implementation with the SAML-tracer browser addon.
+
+Learning outcomes
+
+Install and use SAML-tracer.
+
+What you need
+
+A SAML app to test. See Prepare a SAML integration.
+
+Feedback
+
+Create SAML requests for SP- and IdP-initiated flows and inspect them in SAML-tracer.
+
+About SAML-tracer
+After you complete the SAML configuration, you can test your implementation using SAML-tracer.
+SAML-tracer is an add-on in Firefox and useful when troubleshooting SAML for Service Providerinitiated flows (SP-initiated) or Identity Provider-initiated flows (IdP-initiated). When you start an
+https://developer.okta.com/docs/guides/saml-tracer/main/
+
+1/10
+
+8/10/25, 2:55 PM
+
+Test SAML app implementation with SAML-tracer | Okta Developer
+
+IdP-initiated
+flowEdition
+or SP-initiated
+while SAML-tracer
+is 18,
+enabled,
+it captures
+All Developer
+Orgs will beflow
+deactivated
+starting on July
+2025. Sign
+up for thethe
+newSAML request
+and Integrator
+response.Free Plan to continue building and integrating. Learn more on the Okta Developer Blog
+
+Install SAML-tracer or similar browser tool
+To install SAML-tracer, visit https://addons.mozilla.org/en-US/firefox/addon/saml-tracer/ and
+Guides
+Concepts
+Journeys
+API Docs
+References
+SDKs
+Release No
+follow the instructions.
+After you install SAML-tracer, open it by clicking its icon or select Extensions > SAML-tracer on
+your browser bar.
+Similar tools exist for other browsers, such as SAML DevTools and SAML Chrome Panel
+for Chrome. The following examples use SAML-tracer.
+
+SP-initiated flow
+To create a SAML request for an SP-initiated flow and inspect the request and response in SAMLtracer:
+1. Open SAML-tracer and then access your app, which takes you to the Okta sign-in page if you
+aren't already logged in.
+
+Feedback
+
+2. Look at the SAML-tracer window and see the SAML request sent from your app to Okta. Okta
+returns a SAML response.
+
+Figure 1: SP-initiated Request in SAML-tracer
+
+https://developer.okta.com/docs/guides/saml-tracer/main/
+
+2/10
+
+8/10/25, 2:55 PM
+
+Test SAML app implementation with SAML-tracer | Okta Developer
+
+All Developer Edition Orgs will be deactivated starting on July 18, 2025. Sign up for the new
+Integrator Free Plan to continue building and integrating. Learn more on the Okta Developer Blog
+
+Guides
+
+Concepts
+
+Journeys
+
+API Docs
+
+References
+
+SDKs
+
+Release No
+
+Figure 2: SP-initiated Response in SAML-tracer
+
+IdP-initiated flow
+To create a SAML request for an IdP-initiated flow and inspect it in SAML-tracer:
+1. Assign the SAML app to a user.
+2. Go to the dashboard of that user and click the app icon.
+3. The app opens in a new browser and if successful, sends a SAML response.
+
+Feedback
+
+You can also start an IdP flow by selecting the App Embed link in a browser (SAML App > General
+> App Embed Link).
+
+https://developer.okta.com/docs/guides/saml-tracer/main/
+
+3/10
+
+8/10/25, 2:55 PM
+
+Test SAML app implementation with SAML-tracer | Okta Developer
+
+All Developer Edition Orgs will be deactivated starting on July 18, 2025. Sign up for the new
+Integrator Free Plan to continue building and integrating. Learn more on the Okta Developer Blog
+
+Guides
+
+Concepts
+
+Journeys
+
+API Docs
+
+References
+
+SDKs
+
+Release No
+
+Figure 3: IdP-initiated Response in SAML-tracer
+When you receive a SAML request and response successfully from Okta, it indicates that your
+configuration is successfully working with Okta.
+As you can see from the examples, the app can read attributes passed from Okta after a user
+signs in.
+
+Example SAML request
+
+xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+ID="_2b16caecb21804d0271c7b45734978a31b122c0b9a"
+Version="2.0"
+IssueInstant="2017-02-02T03:12:56Z"
+
+Feedback
+
+<samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+
+Destination="https://orgname.okta.com/app/app_name/exk4x6wko7PcvdVq
+AssertionConsumerServiceURL="http://localhost:8888/simplesamlphp/ww
+ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+
+>
+<saml:Issuer>http://localhost:8888/simplesamlphp/www/module.php/saml/sp/metadata.ph
+<samlp:NameIDPolicy Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+AllowCreate="true"
+/>
+</samlp:AuthnRequest>
+https://developer.okta.com/docs/guides/saml-tracer/main/
+
+4/10
+
+8/10/25, 2:55 PM
+
+Test SAML app implementation with SAML-tracer | Okta Developer
+
+All Developer Edition Orgs will be deactivated starting on July 18, 2025. Sign up for the new
+Integrator Free Plan to continue building and integrating. Learn more on the Okta Developer Blog
+
+Example SAML response
+SAML responses are signed. This example contains the profile attributes of the person who
+requested access to the app, as set on the Applications > General tab.
+Guides
+Concepts
+Journeys
+API Docs
+References
+SDKs
+Release No
+<saml2p:Response xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol"
+Destination="http://localhost:8888/simplesamlphp/www/module.php/saml/s
+
+Feedback
+
+ID="id304067580046365441472203853"
+InResponseTo="_2b16caecb21804d0271c7b45734978a31b122c0b9a"
+IssueInstant="2017-02-02T03:13:05.114Z"
+Version="2.0"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+<saml2:Issuer xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity"
+>http://www.orgname.okta.com</saml2:Issuer>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-s
+<ds:Reference URI="#id304067580045365441472303853">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#envelope
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#">
+<ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml
+PrefixList="xs"
+/>
+</ds:Transform>
+</ds:Transforms>
+
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+<ds:DigestValue>hF6r9lkeTRvgbJA/0bc8ykvCqES8rUzuW9YYShmlQvo=</ds:Digest
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>I82goYxTr5q2D+eWvj6O+DnqOG/xtAStirrgTY1dpBQ2plrI6e4t1g6stXZ4
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>MIIDpDCCAoygAwIBAgIGAVVfq86GMA0GCSqGSIb3DQEBCwUAMIG
+A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU
+https://developer.okta.com/docs/guides/saml-tracer/main/
+
+5/10
+
+8/10/25, 2:55 PM
+
+Test SAML app implementation with SAML-tracer | Okta Developer
+
+MBIGA1UECwwLU1NPUHJvdmlkZXIxEzARBgNVBAMMCmRldnN1cHBvcnQxHDAaBgkqhkiG9w0BCQEW
+All Developer Edition Orgs will be deactivated starting on July 18, 2025. Sign up for the new
+DWluZm9Ab2t0YS5jb20wHhcNMTYwNjE3MTg0MTIyWhcNMjYwNjE3MTg0MjIyWjCBkjELMAkGA1UE
+Integrator Free Plan to continue building and integrating. Learn more on the Okta Developer Blog
+BhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xDTALBgNV
+BAoMBE9rdGExFDASBgNVBAsMC1NTT1Byb3ZpZGVyMRMwEQYDVQQDDApkZXZzdXBwb3J0MRwwGgYJ
+KoZIhvcNAQkBFg1pbmZvQG9rdGEuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+qp10VJvKjqIEk30bv0WPw6XhZtTm19XfLrwyHRG1aYQshkcIolS9Vvp5SdL6dDEctdf5dznrQTlr
+Guides
+Concepts
+Journeys
+API Docs
+References
+SDKs
+Release No
+8Q+LUIC6JGnVzA/qgC1UpsXYdfaod0c35GM8HDsHni0MNUnHt/2MqDW6PkYoIdjniDp21wOCiORE
+FGuC1kUQQJY2yQ8bQJVEKCEyIUPGXLMcQlbB0vAkbGeqz4HCZBX/n7wr/50MMQz8YOLSkx/0Ojls
+sGEA6KAbdFutrvSUKIUeZc4XFfySm9KJ1Vi83PpacOfWuKyktjPR0mC6wK87PuN32boa4nQ2+BMf
+v/qgx4e5RDnTYk2+iPcwN6nKxJfS66kKhpfMdwIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQA8R607
+iL9Sx9QKo31zG2xG24drYxaWta6G5XKcROkFk2ZVfRAhS9rx1WFXuCV5e/ys0z7jILWKisTkjegY
+uubqy6awBbjDRxnUct0OdZU4siHWYjvL+SYOT2Pk8IwlD4HGNsee6WmURvfpL2Yib9Xc85qVp1W9
+t7GU2GZVnOyU7a/JfAgDw79z5dH1BQsCW+nvgeO5VgFXVOSf7dBOB2PlwG5DlH5MgNa67eH3Wr9B
+RKvwyyTfqfq9pgSmB9xNVJIeVZbbZGTlNGqJti24E0AiIPggtxg5NJ+HHnEQ5RxdSsR4fbMz9i0K
+/bXt6hPgGu7xYRSv1RfvKcR1NjYk3nnD</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature>
+<saml2p:Status xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol">
+<saml2p:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success" />
+</saml2p:Status>
+<saml2:Assertion xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+ID="id304067580046759701759203951"
+IssueInstant="2017-02-02T03:13:05.114Z"
+Version="2.0"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+<saml2:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity"
+xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+Feedback
+
+>http://www.orgname.okta.com</saml2:Issuer>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc
+
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#r
+<ds:Reference URI="#id304067580046759701759203951">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enve
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n
+<ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10
+PrefixList="xs"
+https://developer.okta.com/docs/guides/saml-tracer/main/
+
+6/10
+
+8/10/25, 2:55 PM
+
+Test SAML app implementation with SAML-tracer | Okta Developer
+
+/>
+
+All Developer Edition Orgs will be deactivated starting on July 18, 2025. Sign up for the new
+</ds:
+Transform>
+Integrator Free Plan to continue
+building
+and integrating. Learn more on the Okta Developer Blog
+
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256
+<ds:DigestValue>S8mNiYKRl/EwtRMUnwqL8oLfaBNHpgf1Kl1fVmHboX4=</ds:Di
+</ds:Reference>
+Guides
+Concepts
+Journeys
+API Docs
+References
+SDKs
+Release No
+</
+ds:SignedInfo>
+<ds:SignatureValue>ipdSi9HVuHisncXx5xOxTTdyV0i1yMRecpTWVq5HF8Tunc6GImyAd7c7
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>MIIDpDCCAoygAwIBAgIGAVVfq86GMA0GCSqGSIb3DQEBCwU
+A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU
+MBIGA1UECwwLU1NPUHJvdmlkZXIxEzARBgNVBAMMCmRldnN1cHBvcnQxHDAaBgkqhkiG9w0BCQEW
+DWluZm9Ab2t0YS5jb20wHhcNMTYwNjE3MTg0MTIyWhcNMjYwNjE3MTg0MjIyWjCBkjELMAkGA1UE
+BhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xDTALBgNV
+BAoMBE9rdGExFDASBgNVBAsMC1NTT1Byb3ZpZGVyMRMwEQYDVQQDDApkZXZzdXBwb3J0MRwwGgYJ
+KoZIhvcNAQkBFg1pbmZvQG9rdGEuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+qp10VJvKjqIEk30bv0WPw6XhZtTm19XfLrwyHRG1aYQshkcIolS9Vvp5SdL6dDEctdf5dznrQTlr
+8Q+LUIC6JGnVzA/qgC1UpsXYdfaod0c35GM8HDsHni0MNUnHt/2MqDW6PkYoIdjniDp21wOCiORE
+FGuC1kUQQJY2yQ8bQJVEKCEyIUPGXLMcQlbB0vAkbGeqz4HCZBX/n7wr/50MMQz8YOLSkx/0Ojls
+sGEA6KAbdFutrvSUKIUeZc4XFfySm9KJ1Vi83PpacOfWuKyktjPR0mC6wK87PuN32boa4nQ2+BMf
+v/qgx4e5RDnTYk2+iPcwN6nKxJfS66kKhpfMdwIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQA8R607
+iL9Sx9QKo31zG2xG24drYxaWta6G5XKcROkFk2ZVfRAhS9rx1WFXuCV5e/ys0z7jILWKisTkjegY
+uubqy6awBbjDRxnUct0OdZU4siHWYjvL+SYOT2Pk8IwlD4HGNsee6WmURvfpL2Yib9Xc85qVp1W9
+t7GU2GZVnOyU7a/JfAgDw79z5dH1BQsCW+nvgeO5VgFXVOSf7dBOB2PlwG5DlH5MgNa67eH3Wr9B
+RKvwyyTfqfq9pgSmB9xNVJIeVZbbZGTlNGqJti24E0AiIPggtxg5NJ+HHnEQ5RxdSsR4fbMz9i0K
+/bXt6hPgGu7xYRSv1RfvKcR1NjYk3nnD</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+Feedback
+
+</ds:Signature>
+<saml2:Subject xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
+<saml2:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+<saml2:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+<saml2:SubjectConfirmationData InResponseTo="_2b16caecb21804d0271c7b457
+NotOnOrAfter="2017-02-02T03:18:05.114Z"
+Recipient="http://localhost:8888/simples
+/>
+</saml2:SubjectConfirmation>
+</saml2:Subject>
+<saml2:Conditions NotBefore="2017-02-02T03:08:05.114Z"
+https://developer.okta.com/docs/guides/saml-tracer/main/
+
+7/10
+
+8/10/25, 2:55 PM
+
+Test SAML app implementation with SAML-tracer | Okta Developer
+
+NotOnOrAfter="2017-02-02T03:18:05.114Z"
+
+All Developer Edition Orgs will be deactivated starting on July 18, 2025. Sign up for the new
+xmlns:
+saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+Integrator Free Plan to continue
+building
+and integrating. Learn more on the Okta Developer Blog
+
+xsi:type="xs:string"
+>LastName</saml2:AttributeValue>
+</saml2:Attribute>
+<saml2:Attribute Name="Email"
+
+Feedback
+
+>
+<saml2:AudienceRestriction>
+<saml2:Audience>http://localhost:8888/simplesamlphp/www/module.php/saml
+</saml2:AudienceRestriction>
+Guides </saml2:
+Concepts
+API Docs
+References
+SDKs
+Release No
+Conditions>Journeys
+<saml2:AuthnStatement AuthnInstant="2017-02-02T03:13:05.114Z"
+SessionIndex="_2b16caecb21804d0271c7b45734978a31b122c0b9a
+xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+>
+<saml2:AuthnContext>
+<saml2:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Pass
+</saml2:AuthnContext>
+</saml2:AuthnStatement>
+<saml2:AttributeStatement xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
+<saml2:Attribute Name="FirstName"
+NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:un
+>
+<saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-insta
+xsi:type="xs:string"
+>FirstName</saml2:AttributeValue>
+</saml2:Attribute>
+<saml2:Attribute Name="LastName"
+NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:un
+>
+<saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-insta
+
+NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:un
+>
+<saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-insta
+xsi:type="xs:string"
+>firstname.lastname@example.com</saml2:AttributeV
+</saml2:Attribute>
+https://developer.okta.com/docs/guides/saml-tracer/main/
+
+8/10
+
+8/10/25, 2:55 PM
+
+Test SAML app implementation with SAML-tracer | Okta Developer
+
+</saml2:AttributeStatement>
+
+All Developer Edition Orgs will be deactivated starting on July 18, 2025. Sign up for the new
+</saml2:
+Assertion>
+Integrator
+Free
+Plan to continue building and integrating. Learn more on the Okta Developer Blog
+
+</saml2p:Response>
+
+SAML responses are signed and contain the profile attributes of the person who requested access
+Journeys
+API Docs
+References
+SDKs
+Release No
+toGuides
+the app. Concepts
+
+See also
+SAML overview
+SAML FAQ
+Prepare a SAML integration
+
+Feedback
+
+Questions? Ask us on the forum.
+
+OKTA .COM
+
+Products, case studies, resources
+HELP CENTER
+
+Knowledgebase, roadmaps, and more
+https://developer.okta.com/docs/guides/saml-tracer/main/
+
+9/10
+
+8/10/25, 2:55 PM
+
+Test SAML app implementation with SAML-tracer | Okta Developer
+
+TRUST
+All Developer Edition Orgs will be deactivated starting on July 18, 2025. Sign up for the new
+System
+security,building
+compliance
+Integrator
+Freestatus,
+Plan to continue
+and integrating. Learn more on the Okta Developer Blog
+
+& Legal Journeys
+GuidesContact
+Concepts
+
+More information
+API Docs
+References
+
+Contact our team
+
+Integrate with Okta
+
+Contact sales
+
+Pricing
+
+Developer Service terms
+
+3rd-party notes
+
+Site terms
+
+Auth0
+
+Privacy policy
+
+Archive
+
+SDKs
+
+Release No
+
+Copyright & trademarks
+
+Feedback
+
+Copyright © 2025 Okta. All rights reserved.
+
+https://developer.okta.com/docs/guides/saml-tracer/main/
+
+10/10
+
+
